@@ -63,10 +63,10 @@ class ControllerEmployee:
             
             if inactive != "":
                 DaoEmployee.func_edit("Employee", id, inactive=inactive)
-                response += 'Funcionario inativado.\n'
+                response += 'Funcionario inativado com sucesso.\n'
             
             if name == "" and cpf == "" and salary == "" and office == "" and inactive == "":
-                response = "Nada para atualizar"
+                response = "Nada para atualizar."
             
         else:
             response = "ID nao encontrado"
