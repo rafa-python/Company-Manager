@@ -1,4 +1,6 @@
-from model import products, supplier
+from model import products, supplier, supplier
+from controller import controllersupplier
+from dao import daoclasses
 
 
 if __name__ == '__main__':

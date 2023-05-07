@@ -44,7 +44,8 @@ class DaoSupplier(Table):
         fields = {
             'id': 'INTEGER PRIMARY KEY AUTOINCREMENT',
             'name': 'TEXT',
-            'contact': 'TEXT'
+            'contact': 'TEXT',
+            'cnpj': 'TEXT'
         }
         super().__init__("Supplier", fields, "database.db")
 
@@ -82,6 +83,7 @@ class DaoSales(Table):
 
 if __name__ == '__main__':
     a = DaoSales()
+    b = DaoSupplier()
     
 
 
