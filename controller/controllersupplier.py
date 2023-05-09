@@ -20,6 +20,15 @@ class ControllerSupplier:
             response = DaoSupplier.func_add("Supplier", name=name, contact=contact, cnpj=cnpj)
         
         return response
+        
+    @classmethod
+    def display(cls):
+        print("====================================================")
+        table = PrettyTable(["ID", "NOME", "CNPJ", "CONTATO"])
+        data = DaoClient.get_all("Supplier")
+        [table.add_row(row) for row in data]
+
+        return table
     
     @classmethod
     def edit(cls):
