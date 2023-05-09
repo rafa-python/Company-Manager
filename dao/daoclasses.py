@@ -1,4 +1,4 @@
-from .daobase import Table
+from daobase import Table
 from datetime import datetime
 
 
@@ -84,6 +84,7 @@ class DaoSales(Table):
 if __name__ == '__main__':
     a = DaoSales()
     b = DaoSupplier()
+    c = DaoSupplierProducts()
     
 
 
