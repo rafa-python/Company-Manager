@@ -20,6 +20,35 @@ class ControllerSupplier:
             response = DaoSupplier.func_add("Supplier", name=name, contact=contact, cnpj=cnpj)
         
         return response
+    
+    @classmethod
+    def edit(cls):
+        print("====================================================")
+        id = input("Informe o id: ")
+        response = DaoEmployee.func_check_if_exists(id, "cnpj", "Supplier")
+
+        if response:
+            response = ""
+            name = input("Informe o nome: ")
+            contact = input("Informe o fone: ")
+            cnpj = input("Informe o cnpj: ")
+
+            if name != "":
+                DaoSupplier.func_edit("Supplier", id, name=name)
+                response += "Nome atualizado\n"
+            
+            if contact != "":
+                DaoSupplier.func_edit("Supplier", id, contact=contact)
+                response += "Contato atualizado\n"
+            
+            if cnpj != "":
+                DaoSupplier.func_edit("Supplier", id, cnpj=cnpj)
+                response += "cnpj atualizado\n"
+
+            if name == "" and contact == "" and cnpj == "":
+                response = "nada para atualizar"
+       
+        return response
 
 if __name__ == "__main__":
     print(ControllerSupplier.add())
