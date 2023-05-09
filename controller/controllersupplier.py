@@ -9,7 +9,7 @@ class ControllerSupplier:
     def add(cls):
         print("====================================================")
         cnpj = input("Informe o CNPJ: ")
-        response = DaoEmployee.func_check_if_exists(cnpj, "cnpj", "Supplier")
+        response = DaoSupplier.func_check_if_exists(cnpj, "cnpj", "Supplier")
         
         if response:
             response = 'fornecedor ja cadastrado'
@@ -24,7 +24,7 @@ class ControllerSupplier:
     @classmethod
     def display(cls):
         print("====================================================")
-        table = PrettyTable(["ID", "NOME", "CNPJ", "CONTATO"])
+        table = PrettyTable(["ID", "NOME", "CONTATO", "CNPJ"])
         data = DaoClient.get_all("Supplier")
         [table.add_row(row) for row in data]
 
@@ -34,7 +34,7 @@ class ControllerSupplier:
     def edit(cls):
         print("====================================================")
         id = input("Informe o id: ")
-        response = DaoEmployee.func_check_if_exists(id, "cnpj", "Supplier")
+        response = DaoSupplier.func_check_if_exists(id, "id", "Supplier")
 
         if response:
             response = ""
@@ -58,6 +58,18 @@ class ControllerSupplier:
                 response = "nada para atualizar"
        
         return response
+    
+    @classmethod
+    def delete(cls):
+        print("====================================================")
+        id = input("Informe o id: ")
+        response = DaoSupplier.func_check_if_exists(id, "id", "Supplier")
+        if response:
+            DaoSupplier.func_delete(id, "id", "Supplier")
+        else:
+            return 'fornecedor nao encontrado'    
+
+
 
 if __name__ == "__main__":
-    print(ControllerSupplier.add())
+    print(ControllerSupplier.display())
