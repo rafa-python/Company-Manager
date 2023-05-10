@@ -1,4 +1,4 @@
-from daobase import Table
+from .daobase import Table
 from datetime import datetime
 
 
@@ -32,9 +32,10 @@ class DaoProducts(Table):
             'id': "INTEGER PRIMARY KEY AUTOINCREMENT",
             'name': 'TEXT', 
             'purchase_price': 'REAL',
-            'suplier': 'TEXT',
             'stock': 'INTEGER',
-            'category': 'TEXT'
+            'category': 'TEXT',
+            'id_supplier': 'INTEGER',
+            'foreign key(id_supplier)': 'REFERENCES Supplier(id)'
         }
         super().__init__("Products", fields, "database.db")
 
@@ -59,7 +60,7 @@ class DaoSupplierProducts(Table):
             'stock': 'INTEGER',
             'category': 'TEXT',
             'id_supplier': 'INTEGER',
-            'foreign key(id_supplier)': 'REFERENCES Supplier(id)'
+            'foreign key(id_supplier)': 'REFERENCES Supplier(id) ON DELETE CASCADE'
         }
         super().__init__("ProductsSupplier", fields, "database.db")
 
