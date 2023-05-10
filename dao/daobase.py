@@ -37,6 +37,15 @@ class Table:
         data = cursor.fetchall()
         conn.close()
         return data
+    
+    @classmethod
+    def count_records(cls, table: str):
+        cursor, conn = Table.func_database_connect("D:\Empresa\dao\database.db")
+        query = f'SELECT COUNT(*) FROM {table}'
+        count = cursor.execute(query)
+        count = count.fetchone()[0]
+        return count
+
    
     @classmethod
     def func_add(cls, table_name, **kwargs):
@@ -78,7 +87,8 @@ class Table:
         return 'Registro deletado com sucesso.'
 
  
-
+if __name__ == "__main__":
+    Table.count_records("Client")
 
 
 
