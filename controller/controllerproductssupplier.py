@@ -6,10 +6,10 @@ from dao.daoclasses import *
 
 class ControllerProductsSupplier:
     @classmethod
-    def display(cls):
+    def display(cls, table_base="ProductsSupplier", *args):
         print("====================================================")
-        table = PrettyTable(["id", "name", "price", "stock", "category", "id_supplier"])
-        data = DaoClient.get_all("ProductsSupplier")
+        table = PrettyTable([*args])
+        data = DaoClient.get_all(table_base)
         [table.add_row(row) for row in data]
 
         return table
@@ -20,8 +20,14 @@ class ControllerProductsSupplier:
         stock = input("Digite a quantidade: ")
         price = input("Informe o valor de venda: ")
         category = input("Categoria: ")
-        print(DaoSupplier.func_display("Supplier"))
+        print(cls.display("Supplier", "id", "nome", "contato", "cnpj"))
         id = input("Informe o ID do fornecedor: ")
+
+        if DaoSupplierProducts.func_check_if_exists(id, 'id', "Supplier"):
+            return DaoSupplierProducts.func_add("ProductsSupplier", name=name, price=price, stock=stock, 
+                                         category=category, id_supplier=id)
+        else:
+            return 'Fornecedor nao cadastrado'
         
 
     @classmethod
@@ -33,4 +39,4 @@ class ControllerProductsSupplier:
         pass 
 
 if __name__ == "__main__":
-    print(ControllerProductsSupplier.display())
+    print(ControllerProductsSupplier.add_new())
