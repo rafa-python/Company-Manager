@@ -6,8 +6,9 @@ from dao.daoclasses import *
 
 class ControllerProductsSupplier:
     @classmethod
-    def display(cls, table_base="ProductsSupplier", *args):
+    def display(cls, table_base, *args):
         print("====================================================")
+        print("Table name: ", table_base)
         table = PrettyTable([*args])
         data = DaoClient.get_all(table_base)
         [table.add_row(row) for row in data]
@@ -39,4 +40,4 @@ class ControllerProductsSupplier:
         pass 
 
 if __name__ == "__main__":
-    print(ControllerProductsSupplier.add_new())
+    print(ControllerProductsSupplier.display('ProductsSupplier', "id", "nome", "preço", "quantidade", "categoria", "id fornecedor"))
