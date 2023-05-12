@@ -59,6 +59,16 @@ class Table:
         conn.close()
 
         return f'Registro adicionado com sucesso na tabela {table_name}'
+    
+    @classmethod
+    def add(cls, table, id, quant):
+        cursor, conn = Table.func_database_connect("D:\Empresa\dao\database.db")
+        query = f'UPDATE {table} SET stock = stock + ? WHERE id = ?'
+        cursor.execute(query, (quant, id))
+        conn.commit()
+        conn.close()
+        return 'Registro atualizado com sucesso'
+
 
     @classmethod    
     def func_display(cls, table):
