@@ -34,9 +34,13 @@ class ControllerProductsSupplier:
     def add(cls):
         print(cls.display("ProductsSupplier", "id", "nome", "valor", "estoque", "categoria", "id fornecedor"))
         id = input("informe o id: ")
-        quant = input("informe a quantidade: ")
         if DaoSupplierProducts.func_check_if_exists(id, "id", "ProductsSupplier"):
-            pass
+            quant = input("informe a quantidade: ")
+            response = DaoSupplierProducts.add("ProductsSupplier", id, quant)
+        else:
+            response = 'Produto nao encontrado'
+        
+        return response
 
         
 
@@ -49,4 +53,4 @@ class ControllerProductsSupplier:
         pass 
 
 if __name__ == "__main__":
-    print(ControllerProductsSupplier.display('ProductsSupplier', "id", "nome", "preço", "quantidade", "categoria", "id fornecedor"))
+    print(ControllerProductsSupplier.add())
