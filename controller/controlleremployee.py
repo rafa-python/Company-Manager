@@ -86,7 +86,7 @@ class ControllerEmployee:
     @classmethod
     def delete(cls):
         id = input("Informe o ID: ")
-        id_or_none = id_or_none = DaoClient.func_check_if_exists(id, "id", "Employee")
+        id_or_none = DaoClient.func_check_if_exists(id, "id", "Employee")
 
         if id_or_none:
             return DaoEmployee.func_delete(id, "id", "Employee")
