@@ -40,17 +40,7 @@ class ControllerProductsSupplier:
 
     @classmethod
     def add(cls):
-        print(
-            cls.display(
-                "ProductsSupplier",
-                "id",
-                "nome",
-                "valor",
-                "estoque",
-                "categoria",
-                "id fornecedor",
-            )
-        )
+
         id = input("informe o id: ")
         if DaoSupplierProducts.func_check_if_exists(id, "id", "ProductsSupplier"):
             quant = input("informe a quantidade: ")
@@ -62,17 +52,6 @@ class ControllerProductsSupplier:
 
     @classmethod
     def edit(cls):
-        print(
-            cls.display(
-                "ProductsSupplier",
-                "id",
-                "nome",
-                "valor",
-                "estoque",
-                "categoria",
-                "id fornecedor",
-            )
-        )
         id = input("informe o id: ")
         response = ""
         if DaoSupplierProducts.func_check_if_exists(id, "id", "ProductsSupplier"):
@@ -116,8 +95,22 @@ class ControllerProductsSupplier:
 
     @classmethod
     def delete(cls):
-        pass
+        id = input("Informe o id: ")
+        if DaoSupplierProducts.func_check_if_exists(
+                id, "id", "ProductsSupplier"
+            ):
+            return DaoSupplierProducts.func_delete(id, "id", "ProductsSupplier")
 
+        else:
+            return "Produto nao encontrado"
 
 if __name__ == "__main__":
-    print(ControllerProductsSupplier.edit())
+    print(ControllerProductsSupplier.display(
+                "ProductsSupplier",
+                "id",
+                "nome",
+                "valor",
+                "estoque",
+                "categoria",
+                "id fornecedor",))
+    print(ControllerProductsSupplier.delete())
