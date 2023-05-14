@@ -46,11 +46,51 @@ class ControllerProductsSupplier:
 
     @classmethod
     def edit(cls):
-        pass
+        print(cls.display("ProductsSupplier", "id", "nome", "valor", "estoque", "categoria", "id fornecedor"))
+        id = input("informe o id: ")
+        response = ""
+        if DaoSupplierProducts.func_check_if_exists(id, "id", "ProductsSupplier"):
+            
+            nome = input("Informe o nome ou enter para nao atualizar: ")
+            valor = input("Valor ou enter para nao atualizar: ")
+            stoque = input("Estoque ou enter para nao atualizar: ")
+            categoria = input("Categoria ou enter para nao atualizar: ")
+            id_fornecedor = input("id do fornecedor: ")
+            
+            if DaoSupplierProducts.func_check_if_exists(id_fornecedor, "id", "Supplier"):
+                if nome != "":
+                    DaoSupplierProducts.func_edit("ProductsSupplier", id, name=nome)
+                    response += "Nome atualizado\n"
+
+                if valor != "":
+                    DaoSupplierProducts.func_edit("ProductsSupplier", id, price=valor)
+                    response += "Valor atualizado\n"
+                
+                if stoque != "":
+                    DaoSupplierProducts.func_edit("ProductsSupplier", id, stock=stoque)
+                    response += "Estoque atualizado\n"
+                
+                if categoria != "":
+                    DaoSupplierProducts.func_edit("ProductsSupplier", id, category=categoria)
+                    response += "Categoria atualizado\n"
+                
+                if nome == "" and valor == "" and stoque == "" and categoria == "":
+                    response = "Nada para atualizar"
+                
+            else:
+                response = "Fornecedor não localizado"
+            
+        else:
+            response = "Produto nao localizado"
+        
+        return response
+                
+
+
 
     @classmethod
     def delete(cls):
         pass 
 
 if __name__ == "__main__":
-    print(ControllerProductsSupplier.add())
+    print(ControllerProductsSupplier.edit())
