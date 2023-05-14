@@ -5,7 +5,8 @@ class Supplier:
     def __str__(self):
         products_str = "\n".join([f"{p}\n--------------" for p in self.products])
         traits = "=================="
-        return f'{traits}\nname: {self.name}\ncontact: {self.contact}\n+++products:+++\n{products_str}\n{traits}'
+        return f"{traits}\nname: {self.name}\ncontact: {self.contact}\n+++products:+++\n{products_str}\n{traits}"
+
 
 if __name__ == "__main__":
     pass
